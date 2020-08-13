@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# stringr.plus <a href='https://github.com/johncassil/stringr.plus'><img src='man/figures/logo.png' align="right" height="139" /></a>
+# stringr.plus <a href='https://github.com/johncassil/stringr.plus'><img src='man/figures/logo.png' align="right" height="175" /></a>
 
 <!-- badges: start -->
 
@@ -63,12 +63,38 @@ str_extract_after(string = url, pattern = 'vehicle/', num_char = 5)
 ```
 
 ``` r
-#Finally, we often are interested in extracting text between two common patterns:
-file_path <- "‪C/Users/johnpaulcassil/Downloads/a-very-poorly-named-file_08_09_2020.csv"
+#Additionally, we often are interested in extracting text between two common patterns:
+file_path <- "‪C:/Users/pingu/Downloads/a-very-poorly-named-file_08_09_2020.csv"
 str_extract_between(string = file_path, pattern1 = '_', pattern2 = ".csv")
 #> [1] "08_09_2020"
 ```
 
+From time to time, it’s helpful to detect if a string contains more than
+one pattern, typically for filtering purposes.
+
+``` r
+#str_detect_multiple with the "and" method ensures that all patterns must be found to return TRUE:
+file_path <- "‪C:/Users/pingu/Downloads/a-very-poorly-named-file_08_09_2020.csv"
+str_detect_multiple(string = file_path, patterns = c("pingu", "2020"), method = 'and')
+#> [1] TRUE
+#An easier alias for this is str_detect_multiple_and()
+str_detect_multiple_and(string = file_path, patterns = c("Downloads", "csv"))
+#> [1] TRUE
+```
+
+Likewise, it’s helpful to detect if a string contains any patterns from
+a list of patterns.
+
+``` r
+#str_detect_multiple with the "or" method ensures at least one of patterns must be found to return TRUE:
+file_path <- "‪C:/Users/pingu/Downloads/a-very-poorly-named-file_08_09_2020.csv"
+str_detect_multiple(string = file_path, patterns = c("very", "purple"), method = 'or')
+#> [1] TRUE
+#It is also aliased with str_detect_multiple_or()
+str_detect_multiple_or(string = file_path, patterns = c("large", "file"))
+#> [1] TRUE
+```
+
 These functions inherit properties from and are based on
-stringr::str\_extract, so patterns can be regular expressions. Consult
+stringr::str\_extract(), so patterns can be regular expressions. Consult
 the documentation for more details.

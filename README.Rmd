@@ -13,7 +13,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-# stringr.plus <a href='https://github.com/johncassil/stringr.plus'><img src='man/figures/logo.png' align="right" height="139" /></a>
+# stringr.plus <a href='https://github.com/johncassil/stringr.plus'><img src='man/figures/logo.png' align="right" height="175" /></a>
 
 <!-- badges: start -->
 [![Lifecycle: maturing](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#maturing)
@@ -68,10 +68,34 @@ str_extract_after(string = url, pattern = 'vehicle/', num_char = 5)
 
 
 ```{r example5}
-#Finally, we often are interested in extracting text between two common patterns:
-file_path <- "‪C/Users/johnpaulcassil/Downloads/a-very-poorly-named-file_08_09_2020.csv"
+#Additionally, we often are interested in extracting text between two common patterns:
+file_path <- "‪C:/Users/pingu/Downloads/a-very-poorly-named-file_08_09_2020.csv"
 str_extract_between(string = file_path, pattern1 = '_', pattern2 = ".csv")
 
 ```
 
-These functions inherit properties from and are based on stringr::str_extract, so patterns can be regular expressions. Consult the documentation for more details.
+From time to time, it's helpful to detect if a string contains more than one pattern, typically for filtering purposes.
+
+```{r example6}
+#str_detect_multiple with the "and" method ensures that all patterns must be found to return TRUE:
+file_path <- "‪C:/Users/pingu/Downloads/a-very-poorly-named-file_08_09_2020.csv"
+str_detect_multiple(string = file_path, patterns = c("pingu", "2020"), method = 'and')
+#An easier alias for this is str_detect_multiple_and()
+str_detect_multiple_and(string = file_path, patterns = c("Downloads", "csv"))
+
+
+```
+
+Likewise, it's helpful to detect if a string contains any patterns from a list of patterns. 
+
+```{r example7}
+#str_detect_multiple with the "or" method ensures at least one of patterns must be found to return TRUE:
+file_path <- "‪C:/Users/pingu/Downloads/a-very-poorly-named-file_08_09_2020.csv"
+str_detect_multiple(string = file_path, patterns = c("very", "purple"), method = 'or')
+#It is also aliased with str_detect_multiple_or()
+str_detect_multiple_or(string = file_path, patterns = c("large", "file"))
+
+```
+
+
+These functions inherit properties from and are based on stringr::str_extract(), so patterns can be regular expressions. Consult the documentation for more details.
