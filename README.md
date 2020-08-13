@@ -1,11 +1,17 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# stringr.plus
+# stringr.plus <a href='https://github.com/johncassil/stringr.plus'><img src='man/figures/logo.png' align="right" height="139" /></a>
 
 <!-- badges: start -->
 
+[![Lifecycle:
+maturing](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#maturing)
+[![R build
+status](https://github.com/johncassil/stringr.plus/workflows/R-CMD-check/badge.svg)](https://github.com/johncassil/stringr.plus/actions)
 <!-- badges: end -->
+
+## Overview
 
 stringr.plus provides some additional functions not found in stringr for
 working with strings. Functions play quite nicely with the tidyverse.
