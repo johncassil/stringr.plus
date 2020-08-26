@@ -24,8 +24,8 @@ You can install the released version of stringr.plus from
 [github](https://github.com) with:
 
 ``` r
-# install.packages("devtools")
-devtools::install_github("johncassil/stringr.plus")
+# install.packages("remotes")
+remotes::install_github("johncassil/stringr.plus")
 ```
 
 ## Examples
