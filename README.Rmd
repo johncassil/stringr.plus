@@ -28,7 +28,7 @@ stringr.plus provides some additional functions not found in stringr for working
 
 You can install the released version of stringr.plus from [github](https://github.com) with:
 
-``` r
+```{r, eval=FALSE}
 # install.packages("remotes")
 remotes::install_github("johncassil/stringr.plus")
 ```
@@ -39,12 +39,10 @@ Quite frequently when working with urls or filepaths, one would like to strip ou
 
 ```{r example}
 library(stringr.plus)
-
 url <- 'www.carfax.com/vehicle/3GCPKTE77DG348900'
 
 #What if we need just the base url?
 str_extract_before(string = url, pattern = '/')
-
 ```
 
 
@@ -82,8 +80,6 @@ file_path <- "‪C:/Users/pingu/Downloads/a-very-poorly-named-file_08_09_2020.cs
 str_detect_multiple(string = file_path, patterns = c("pingu", "2020"), method = 'and')
 #An easier alias for this is str_detect_multiple_and()
 str_detect_multiple_and(string = file_path, patterns = c("Downloads", "csv"))
-
-
 ```
 
 Likewise, it's helpful to detect if a string contains any patterns from a list of patterns. 
@@ -94,8 +90,6 @@ file_path <- "‪C:/Users/pingu/Downloads/a-very-poorly-named-file_08_09_2020.cs
 str_detect_multiple(string = file_path, patterns = c("very", "purple"), method = 'or')
 #It is also aliased with str_detect_multiple_or()
 str_detect_multiple_or(string = file_path, patterns = c("large", "file"))
-
 ```
-
 
 These functions inherit properties from and are based on stringr::str_extract(), so patterns can be regular expressions. Consult the documentation for more details.

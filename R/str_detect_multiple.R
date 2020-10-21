@@ -13,7 +13,7 @@
 #' @param method Match method: "and" or "or". "and" will only match strings where all patterns in the character vector are found in the string. "or" will match strings where any of the patterns in the character vector are found in the string.
 
 #' @return The part of the string after the first pattern and before the second pattern.
-#' @export
+#' @export str_detect_multiple
 #' @examples
 #' test_string <- 'complicated_file_name-32.csv'
 #' str_detect_multiple(test_string, c('hadley', 'csv'), method = "and")
@@ -32,7 +32,7 @@ str_detect_multiple <- function(string, patterns, method){
 
 #' @rdname str_detect_multiple
 #' @examples str_detect_multiple_and(test_string, c('hadley', 'csv'))
-#' @export
+#' @export str_detect_multiple_and
 str_detect_multiple_and <- function(string, patterns){
     str_detect_multiple(string, patterns, method = "and")
 }
@@ -41,7 +41,7 @@ str_detect_multiple_and <- function(string, patterns){
 
 #' @rdname str_detect_multiple
 #' @examples str_detect_multiple_or(test_string, c('hadley', 'csv'))
-#' @export
+#' @export str_detect_multiple_or
 str_detect_multiple_or <- function(string, patterns){
     str_detect_multiple(string, patterns, method = "or")
 }

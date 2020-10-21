@@ -12,7 +12,7 @@
 #' Match character, word, line and sentence boundaries with boundary(). An empty pattern, "", is equivalent to boundary("character").
 #' @param num_char The number of characters to return from before the pattern.  Leave NULL to return everything before the pattern.
 #' @return The part of the string before the pattern.
-#' @export
+#' @export str_extract_before
 #' @examples
 #' test_string <- 'url.com/string_before_pattern_after-another_string_with_pattern2/'
 #' str_extract_before(string = test_string, pattern = '_pattern_')
@@ -38,7 +38,7 @@ str_extract_before <- function(string, pattern, num_char = NULL){
 #' @param num_char The number of characters to return from before the pattern.  Leave NULL to return everything before the pattern.
 #' @importFrom glue glue
 #' @return The part of the string before the pattern.
-#' @export
+#' @export str_extract_before_date
 #' @examples
 #' test_string <- 'url.com/string_before_pattern_2020_08_01/index.html'
 #' str_extract_before_date(string = test_string, date_sep = "_")

@@ -12,7 +12,7 @@
 #'
 #' Match character, word, line and sentence boundaries with boundary(). An empty pattern, "", is equivalent to boundary("character").
 #' @return The part of the string after the first pattern and before the second pattern.
-#' @export
+#' @export str_extract_between
 #' @examples
 #' test_string <- 'url.com/string_before_pattern_after-another_string_with_pattern2/'
 #' str_extract_between(string = test_string, pattern1 = "_pattern_", pattern2 = "_pattern2")
