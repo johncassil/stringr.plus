@@ -4,12 +4,12 @@
 \alias{str_extract_after_date}
 \title{Extract characters in a string which occur after a date}
 \usage{
-str_extract_after_date(string, symbol = "", format = "num", num_char = NULL)
+str_extract_after_date(string, date_sep = "", format = "num", num_char = NULL)
 }
 \arguments{
 \item{string}{The string from which to extract.}
 
-\item{symbol}{Character symbol seperating the components of the date.}
+\item{date_sep}{Character symbol seperating the components of the date.}
 
 \item{format}{The format of the date in the string. Must be one of 'num' (year-month-day, month-day-year, or day-month-year with all numerical components), 'mdy-abbr' (month-day-year, abbreviated month name), 'dmy-abbr' (day-month-year, abbreviated month name), 'mdy-full' (month-day-year, full month name), or dmy-full' (day-month-year, full month name).}
 
@@ -19,26 +19,26 @@ str_extract_after_date(string, symbol = "", format = "num", num_char = NULL)
 The part of the string after the pattern.
 }
 \description{
-Vectorised over `string` and `symbol`.
+Vectorised over `string` and `date_sep`.
 }
 \examples{
 test_string <- 'url.com/string_before_pattern_2020_08_01/index.html'
-str_extract_after_date(string = test_string, symbol = "_")
-str_extract_after_date(string = test_string, symbol = "_", num_char = 6)
+str_extract_after_date(string = test_string, date_sep = "_")
+str_extract_after_date(string = test_string, date_sep = "_", num_char = 6)
 
 test_string <- 'I-should-use-version-control-12-31-2020-final.csv'
-str_extract_after_date(string = test_string, symbol = "-")
+str_extract_after_date(string = test_string, date_sep = "-")
 
 test_string <- 'I-should-use-version-control-Dec-31-2020-final.csv'
-str_extract_after_date(string = test_string, symbol = "-", format = "mdy-abbr")
+str_extract_after_date(string = test_string, date_sep = "-", format = "mdy-abbr")
 
 test_string <- 'I-should-use-version-control-December-31-2020-final.csv'
-str_extract_after_date(string = test_string, symbol = "-", format = "mdy-full")
+str_extract_after_date(string = test_string, date_sep = "-", format = "mdy-full")
 
 test_string <- 'I-should-use-version-control-31-Dec-2020-final.csv'
-str_extract_after_date(string = test_string, symbol = "-", format = "dmy-abbr")
+str_extract_after_date(string = test_string, date_sep = "-", format = "dmy-abbr")
 
 test_string <- 'I-should-use-version-control-31-December-2020-final.csv'
-str_extract_after_date(string = test_string, symbol = "-", format = "dmy-full")
+str_extract_after_date(string = test_string, date_sep = "-", format = "dmy-full")
 
 }

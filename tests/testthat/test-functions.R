@@ -13,11 +13,11 @@ test_that("str_extract_before works", {
 
 test_that("str_extract_before_date works", {
 
-    expect_equal(str_extract_before_date(string = test_string, symbol = "_"),
+    expect_equal(str_extract_before_date(string = test_string, date_sep = "_"),
                  "URL.com/long_string_here_before_pattern_after_another_string_here_with_pattern2_there_and_date_here")
 
 
-    expect_equal(str_extract_before_date(string = test_string, symbol = "_", num_char = 9),
+    expect_equal(str_extract_before_date(string = test_string, date_sep = "_", num_char = 9),
                  "date_here")
 
 })
@@ -37,11 +37,11 @@ test_that("str_extract_after works", {
 
 test_that("str_extract_after_date works", {
 
-    expect_equal(str_extract_after_date(string = test_string, symbol = '_'),
+    expect_equal(str_extract_after_date(string = test_string, date_sep = '_'),
                  "but_not_here/")
 
 
-    expect_equal(str_extract_after_date(string = test_string, symbol = '_', num_char = 12),
+    expect_equal(str_extract_after_date(string = test_string, date_sep = '_', num_char = 12),
                  "but_not_here")
 
 })

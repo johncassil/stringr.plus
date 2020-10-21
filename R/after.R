@@ -33,10 +33,10 @@ str_extract_after <- function(string, pattern, num_char = NULL){
 
 #' Extract characters in a string which occur after a date
 #'
-#' Vectorised over `string` and `symbol`.
+#' Vectorised over `string` and `date_sep`.
 #'
 #' @param string The string from which to extract.
-#' @param symbol Character symbol seperating the components of the date.
+#' @param date_sep Character symbol seperating the components of the date.
 #' @param format The format of the date in the string. Must be one of 'num' (year-month-day, month-day-year, or day-month-year with all numerical components), 'mdy-abbr' (month-day-year, abbreviated month name), 'dmy-abbr' (day-month-year, abbreviated month name), 'mdy-full' (month-day-year, full month name), or dmy-full' (day-month-year, full month name).
 #' @param num_char The number of characters to return from after the pattern.  Leave NULL to return everything after the pattern.
 #' @importFrom glue glue
@@ -44,40 +44,40 @@ str_extract_after <- function(string, pattern, num_char = NULL){
 #' @export
 #' @examples
 #' test_string <- 'url.com/string_before_pattern_2020_08_01/index.html'
-#' str_extract_after_date(string = test_string, symbol = "_")
-#' str_extract_after_date(string = test_string, symbol = "_", num_char = 6)
+#' str_extract_after_date(string = test_string, date_sep = "_")
+#' str_extract_after_date(string = test_string, date_sep = "_", num_char = 6)
 #'
 #' test_string <- 'I-should-use-version-control-12-31-2020-final.csv'
-#' str_extract_after_date(string = test_string, symbol = "-")
+#' str_extract_after_date(string = test_string, date_sep = "-")
 #'
 #' test_string <- 'I-should-use-version-control-Dec-31-2020-final.csv'
-#' str_extract_after_date(string = test_string, symbol = "-", format = "mdy-abbr")
+#' str_extract_after_date(string = test_string, date_sep = "-", format = "mdy-abbr")
 #'
 #' test_string <- 'I-should-use-version-control-December-31-2020-final.csv'
-#' str_extract_after_date(string = test_string, symbol = "-", format = "mdy-full")
+#' str_extract_after_date(string = test_string, date_sep = "-", format = "mdy-full")
 #'
 #' test_string <- 'I-should-use-version-control-31-Dec-2020-final.csv'
-#' str_extract_after_date(string = test_string, symbol = "-", format = "dmy-abbr")
+#' str_extract_after_date(string = test_string, date_sep = "-", format = "dmy-abbr")
 #'
 #' test_string <- 'I-should-use-version-control-31-December-2020-final.csv'
-#' str_extract_after_date(string = test_string, symbol = "-", format = "dmy-full")
+#' str_extract_after_date(string = test_string, date_sep = "-", format = "dmy-full")
 #'
-str_extract_after_date <- function(string, symbol = "", format = "num", num_char = NULL){
+str_extract_after_date <- function(string, date_sep = "", format = "num", num_char = NULL){
 
     if (format == "num") {
-        position_of_pattern <- stringr::str_locate(string=string, pattern = glue("[:punct:][0-9{symbol}]{{8,}}"))
+        position_of_pattern <- stringr::str_locate(string=string, pattern = glue("[:punct:][0-9{date_sep}]{{8,}}"))
     }
     else if (format == "mdy-abbr") {
-        position_of_pattern <- stringr::str_locate(string=string, pattern = glue("([:alpha:]{{3}}{symbol}\\d{{1,2}}{symbol}\\d{{4}}[:punct:])"))
+        position_of_pattern <- stringr::str_locate(string=string, pattern = glue("([:alpha:]{{3}}{date_sep}\\d{{1,2}}{date_sep}\\d{{4}}[:punct:])"))
     }
     else if (format == "mdy-full") {
-        position_of_pattern <- stringr::str_locate(string=string, pattern = glue("([:alpha:]{{3,}}{symbol}\\d{{1,2}}{symbol}\\d{{4}}[:punct:])"))
+        position_of_pattern <- stringr::str_locate(string=string, pattern = glue("([:alpha:]{{3,}}{date_sep}\\d{{1,2}}{date_sep}\\d{{4}}[:punct:])"))
     }
     else if (format == "dmy-abbr") {
-        position_of_pattern <- stringr::str_locate(string=string, pattern = glue("(\\d{{1,2}}{symbol}[:alpha:]{{3}}{symbol}\\d{{4}}[:punct:])"))
+        position_of_pattern <- stringr::str_locate(string=string, pattern = glue("(\\d{{1,2}}{date_sep}[:alpha:]{{3}}{date_sep}\\d{{4}}[:punct:])"))
     }
     else if (format == "dmy-full") {
-        position_of_pattern <- stringr::str_locate(string=string, pattern = glue("(\\d{{1,2}}{symbol}[:alpha:]{{3,}}{symbol}\\d{{4}}[:punct:])"))
+        position_of_pattern <- stringr::str_locate(string=string, pattern = glue("(\\d{{1,2}}{date_sep}[:alpha:]{{3,}}{date_sep}\\d{{4}}[:punct:])"))
     }
     else {
         stop("category must be one of 'num', 'mdy-abbr', 'mdy-full', 'dmy-abbr', or 'dmy-full'")
