@@ -36,7 +36,6 @@ need to extract the text between patterns:
 
 ``` r
 library(stringr.plus)
-
 url <- 'www.carfax.com/vehicle/3GCPKTE77DG348900'
 
 #What if we need just the base url?
