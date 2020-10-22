@@ -81,8 +81,8 @@ str_detect_multiple_and(string = file_path, patterns = c("Downloads", "csv"))
 #> [1] TRUE
 ```
 
-Likewise, it’s helpful to detect if a string contains any patterns from
-a list of patterns.
+Likewise, sometimes it’s helpful to detect if a string contains **any**
+patterns from a list of patterns.
 
 ``` r
 #str_detect_multiple with the "or" method ensures at least one of patterns must be found to return TRUE:
@@ -105,7 +105,11 @@ before or after a date pattern.
 file_path <- "*C:/Users/pingu/Downloads/a-very-poorly-named-file_08_09_2020.csv"
 str_extract_before_date(file_path, date_sep = "_")
 #> [1] "*C:/Users/pingu/Downloads/a-very-poorly-named-file"
+
 str_extract_before_date(file_path, date_sep = "_", num_char = 24)
+#> [1] "a-very-poorly-named-file"
+
+str_extract_after(str_extract_before_date(file_path, date_sep = "_"), "Downloads/")
 #> [1] "a-very-poorly-named-file"
 ```
 

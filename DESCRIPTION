@@ -1,9 +1,9 @@
 Package: stringr.plus
 Type: Package
 Title: string functions that are "too specific for stringr" for Hadley Wickham
-Version: 0.1.0
-Authors@R: person("John", "Cassil", email = "john@johncassil.com",
-  role = c("aut", "cre"))
+Version: 0.1.1
+Authors@R: c(person("John", "Cassil", email = "johnpaul@hey.com", role = c("aut", "cre")),
+  person("Hayden", "MacDonald", email = "hmd@needleinthehay.ca", role = "ctb"))
 Description: A few handy functions for extracting strings before, after, and in between symbols. Works nicely for filenames and urls. Other wrapper functions may be included later.   
 License: MIT + file LICENSE
 Encoding: UTF-8
