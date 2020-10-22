@@ -36,7 +36,6 @@ need to extract the text between patterns:
 
 ``` r
 library(stringr.plus)
-
 url <- 'www.carfax.com/vehicle/3GCPKTE77DG348900'
 
 #What if we need just the base url?
@@ -98,3 +97,23 @@ str_detect_multiple_or(string = file_path, patterns = c("large", "file"))
 These functions inherit properties from and are based on
 stringr::str\_extract(), so patterns can be regular expressions. Consult
 the documentation for more details.
+
+Lastly, there are specialized functions for extracting information
+before or after a date pattern.
+
+``` r
+file_path <- "*C:/Users/pingu/Downloads/a-very-poorly-named-file_08_09_2020.csv"
+str_extract_before_date(file_path, date_sep = "_")
+#> [1] "*C:/Users/pingu/Downloads/a-very-poorly-named-file"
+str_extract_before_date(file_path, date_sep = "_", num_char = 24)
+#> [1] "a-very-poorly-named-file"
+```
+
+``` r
+test_string <- 'I-should-use-version-control-Mar-31-2020-FINAL.csv'
+str_extract_after_date(string = test_string, date_sep = "-", format = "mdy-abbr")
+#> [1] "FINAL.csv"
+```
+
+Note that the `date_sep` argument should be a special character that
+separates the date components.
