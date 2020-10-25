@@ -15,7 +15,7 @@ str_extract_context <- function(string, pattern, window_size = 10){
 
     positions_of_pattern <- stringr::str_locate_all(string = string, pattern = pattern)
 
-    extract_per_string <- function(string, positions_of_pattern){
+    extract_per_string <- function(string, positions_of_pattern, window_size){
         positions_of_pattern <- as.data.frame(positions_of_pattern)
         string_extract_all <- rep(NA, nrow(positions_of_pattern))
         for(i in 1:nrow(positions_of_pattern)){
@@ -36,7 +36,7 @@ str_extract_context <- function(string, pattern, window_size = 10){
         return(cleaned_up)
     }
 
-    return_list <- unname(mapply(extract_per_string, string, positions_of_pattern))
+    return_list <- unname(mapply(extract_per_string, string, positions_of_pattern, window_size))
 
     return(return_list)
 }
