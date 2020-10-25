@@ -21,12 +21,13 @@
 #'
 str_extract_after <- function(string, pattern, num_char = NULL){
     position_of_pattern <- stringr::str_locate(string=string, pattern = pattern)
-    end_of_pattern <- position_of_pattern[2]
+    end_of_pattern <- position_of_pattern[,'end']
     string_extract <- stringr::str_sub(string = string,
-                                       start = (end_of_pattern + 1 ),
+                                       start = (end_of_pattern + 1),
                                        end = if (is.null(num_char)) {nchar(string)} else {(end_of_pattern + num_char)})
     return(string_extract)
 }
+
 
 
 
@@ -65,25 +66,25 @@ str_extract_after <- function(string, pattern, num_char = NULL){
 str_extract_after_date <- function(string, date_sep = "", format = "num", num_char = NULL){
 
     if (format == "num") {
-        position_of_pattern <- stringr::str_locate(string=string, pattern = glue("[:punct:][0-9{date_sep}]{{8,}}"))
+        position_of_pattern <- stringr::str_locate(string=string, pattern = glue::glue("[:punct:][0-9{date_sep}]{{8,}}"))
     }
     else if (format == "mdy-abbr") {
-        position_of_pattern <- stringr::str_locate(string=string, pattern = glue("([:alpha:]{{3}}{date_sep}\\d{{1,2}}{date_sep}\\d{{4}}[:punct:])"))
+        position_of_pattern <- stringr::str_locate(string=string, pattern = glue::glue("([:alpha:]{{3}}{date_sep}\\d{{1,2}}{date_sep}\\d{{4}}[:punct:])"))
     }
     else if (format == "mdy-full") {
-        position_of_pattern <- stringr::str_locate(string=string, pattern = glue("([:alpha:]{{3,}}{date_sep}\\d{{1,2}}{date_sep}\\d{{4}}[:punct:])"))
+        position_of_pattern <- stringr::str_locate(string=string, pattern = glue::glue("([:alpha:]{{3,}}{date_sep}\\d{{1,2}}{date_sep}\\d{{4}}[:punct:])"))
     }
     else if (format == "dmy-abbr") {
-        position_of_pattern <- stringr::str_locate(string=string, pattern = glue("(\\d{{1,2}}{date_sep}[:alpha:]{{3}}{date_sep}\\d{{4}}[:punct:])"))
+        position_of_pattern <- stringr::str_locate(string=string, pattern = glue::glue("(\\d{{1,2}}{date_sep}[:alpha:]{{3}}{date_sep}\\d{{4}}[:punct:])"))
     }
     else if (format == "dmy-full") {
-        position_of_pattern <- stringr::str_locate(string=string, pattern = glue("(\\d{{1,2}}{date_sep}[:alpha:]{{3,}}{date_sep}\\d{{4}}[:punct:])"))
+        position_of_pattern <- stringr::str_locate(string=string, pattern = glue::glue("(\\d{{1,2}}{date_sep}[:alpha:]{{3,}}{date_sep}\\d{{4}}[:punct:])"))
     }
     else {
         stop("category must be one of 'num', 'mdy-abbr', 'mdy-full', 'dmy-abbr', or 'dmy-full'")
     }
 
-    end_of_pattern <- position_of_pattern[2]
+    end_of_pattern <- position_of_pattern[,"end"]
     string_extract <- stringr::str_sub(string = string,
                                        start = (end_of_pattern + 1 ),
                                        end = if (is.null(num_char)) {nchar(string)} else {(end_of_pattern + num_char)})

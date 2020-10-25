@@ -20,9 +20,9 @@
 #'
 str_extract_between <- function(string, pattern1, pattern2){
     position_of_pattern1 <- stringr::str_locate(string=string, pattern = pattern1)
-    end_of_pattern1 <- position_of_pattern1[2]
+    end_of_pattern1 <- position_of_pattern1[,"end"]
     position_of_pattern2 <- stringr::str_locate(string=string, pattern = pattern2)
-    start_of_pattern2 <- position_of_pattern2[1]
+    start_of_pattern2 <- position_of_pattern2[,"start"]
     string_extract <- stringr::str_sub(string = string, start = (end_of_pattern1 + 1), end = (start_of_pattern2 - 1) )
     return(string_extract)
 }
