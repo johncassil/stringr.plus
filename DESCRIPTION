@@ -1,7 +1,7 @@
 Package: stringr.plus
 Type: Package
 Title: string functions that are "too specific for stringr" for Hadley Wickham
-Version: 0.1.1
+Version: 0.1.2
 Authors@R: c(person("John", "Cassil", email = "johnpaul@hey.com", role = c("aut", "cre")),
   person("Hayden", "MacDonald", email = "hmd@needleinthehay.ca", role = "ctb"), 
   person("Abi", "Dawson", email = NA, role = "ctb"))
