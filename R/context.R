@@ -88,6 +88,3 @@ str_extract_context_all <- function(string, pattern, window_size = 10){
 
     return(return_list)
 }
-
-
-

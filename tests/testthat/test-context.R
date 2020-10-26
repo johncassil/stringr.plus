@@ -21,7 +21,7 @@ test_data <- tibble::tribble(
     "I'm trying to become a vegetarian, though!", "vegetarian", 10)
 
 
-
+##
 test_that("str_extract_context vectorization works", {
     expect_equal(
         test_data %>%
@@ -32,7 +32,7 @@ test_that("str_extract_context vectorization works", {
             "s my first test",
             "is a second one.",
             "his beef is ",
-            "become a vegetarian, though!")
+            " become a vegetarian, though!")
     )
 })
 
@@ -53,7 +53,7 @@ test_that("str_extract_context vectorization works with static window", {
 
 
 
-
+##
 test_that("str_extract_context_all vectorization works", {
     expect_equal(
         test_data %>%
@@ -71,7 +71,7 @@ test_that("str_extract_context_all vectorization works", {
     )
 })
 
-
+##
 test_that("str_extract_context_all vectorization works with static window", {
     expect_equal(
         test_data %>%
