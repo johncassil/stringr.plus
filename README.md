@@ -98,6 +98,30 @@ These functions inherit properties from and are based on
 stringr::str\_extract(), so patterns can be regular expressions. Consult
 the documentation for more details.
 
+Understanding the context of a pattern match can also be important,
+extending the pattern by a maximum number of characters before and after
+the given pattern.
+
+`str_extract_context()` will return the first match of the pattern,
+extended by the `window_size`.
+
+``` r
+
+    sentence <- "I have spread my dreams under your feet; Tread softly because you tread on my dreams."
+    str_extract_context(string = sentence, pattern = "my", window_size = 15)
+    #> [1] "I have spread my dreams under y"
+```
+
+`str_extract_context_all()` will return all matches of the pattern,
+extended by the `window_size`.
+
+``` r
+    str_extract_context_all(string = sentence, pattern = "my", window_size = 15)
+    #>      [,1]                             
+    #> [1,] "I have spread my dreams under y"
+    #> [2,] "e you tread on my dreams."
+```
+
 Lastly, there are specialized functions for extracting information
 before or after a date pattern.
 

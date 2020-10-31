@@ -92,11 +92,34 @@ str_detect_multiple(string = file_path, patterns = c("very", "purple"), method =
 str_detect_multiple_or(string = file_path, patterns = c("large", "file"))
 ```
 
+
+Understanding the context of a pattern match can also be important, extending the pattern by
+a maximum number of characters before and after the given pattern. 
+
+`str_extract_context()` will return the first match of the pattern, extended by the `window_size`.
+
+
+```{r example8}
+sentence <- "I have spread my dreams under your feet; Tread softly because you tread on my dreams."
+str_extract_context(string = sentence, pattern = "my", window_size = 15)
+
+```
+
+`str_extract_context_all()` will return all matches of the pattern, extended by the `window_size`.
+
+
+```{r example9}
+
+str_extract_context_all(string = sentence, pattern = "my", window_size = 15)
+
+```
+
+
 These functions inherit properties from and are based on stringr::str_extract(), so patterns can be regular expressions. Consult the documentation for more details.
 
 Lastly, there are specialized functions for extracting information before or after a date pattern.
 
-```{r example8}
+```{r example_date1}
 file_path <- "*C:/Users/pingu/Downloads/a-very-poorly-named-file_08_09_2020.csv"
 str_extract_before_date(file_path, date_sep = "_")
 
@@ -105,7 +128,7 @@ str_extract_before_date(file_path, date_sep = "_", num_char = 24)
 str_extract_after(str_extract_before_date(file_path, date_sep = "_"), "Downloads/")
 ```
 
-```{r example9}
+```{r example_date2}
 test_string <- 'I-should-use-version-control-Mar-31-2020-FINAL.csv'
 str_extract_after_date(string = test_string, date_sep = "-", format = "mdy-abbr")
 ```
