@@ -62,6 +62,14 @@ str_extract_after(string = url, pattern = 'vehicle/', num_char = 5)
 ```
 
 ``` r
+#We can also select from the "first" (default) or "last" occurrences of patterns:
+str_extract_after(string = url, pattern = '/', which = "last")
+#> [1] "3GCPKTE77DG348900"
+str_extract_before(string = url, pattern = '/', which = "last")
+#> [1] "www.carfax.com/vehicle"
+```
+
+``` r
 #Additionally, we often are interested in extracting text between two common patterns:
 file_path <- "‪C:/Users/pingu/Downloads/a-very-poorly-named-file_08_09_2020.csv"
 str_extract_between(string = file_path, pattern1 = '_', pattern2 = ".csv")
@@ -94,10 +102,6 @@ str_detect_multiple_or(string = file_path, patterns = c("large", "file"))
 #> [1] TRUE
 ```
 
-These functions inherit properties from and are based on
-stringr::str\_extract(), so patterns can be regular expressions. Consult
-the documentation for more details.
-
 Understanding the context of a pattern match can also be important,
 extending the pattern by a maximum number of characters before and after
 the given pattern.
@@ -106,21 +110,24 @@ the given pattern.
 extended by the `window_size`.
 
 ``` r
-
-    sentence <- "I have spread my dreams under your feet; Tread softly because you tread on my dreams."
-    str_extract_context(string = sentence, pattern = "my", window_size = 15)
-    #> [1] "I have spread my dreams under y"
+sentence <- "I have spread my dreams under your feet; Tread softly because you tread on my dreams."
+str_extract_context(string = sentence, pattern = "my", window_size = 15)
+#> [1] "I have spread my dreams under y"
 ```
 
 `str_extract_context_all()` will return all matches of the pattern,
 extended by the `window_size`.
 
 ``` r
-    str_extract_context_all(string = sentence, pattern = "my", window_size = 15)
-    #>      [,1]                             
-    #> [1,] "I have spread my dreams under y"
-    #> [2,] "e you tread on my dreams."
+str_extract_context_all(string = sentence, pattern = "my", window_size = 15)
+#>      [,1]                             
+#> [1,] "I have spread my dreams under y"
+#> [2,] "e you tread on my dreams."
 ```
+
+These functions inherit properties from and are based on
+stringr::str\_extract(), so patterns can be regular expressions. Consult
+the documentation for more details.
 
 Lastly, there are specialized functions for extracting information
 before or after a date pattern.

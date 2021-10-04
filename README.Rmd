@@ -63,9 +63,13 @@ str_extract_after(string = url, pattern = 'vehicle/')
 str_extract_after(string = url, pattern = 'vehicle/', num_char = 5)
 
 ```
-
-
 ```{r example5}
+#We can also select from the "first" (default) or "last" occurrences of patterns:
+str_extract_after(string = url, pattern = '/', which = "last")
+str_extract_before(string = url, pattern = '/', which = "last")
+```
+
+```{r example6}
 #Additionally, we often are interested in extracting text between two common patterns:
 file_path <- "‪C:/Users/pingu/Downloads/a-very-poorly-named-file_08_09_2020.csv"
 str_extract_between(string = file_path, pattern1 = '_', pattern2 = ".csv")
@@ -74,7 +78,7 @@ str_extract_between(string = file_path, pattern1 = '_', pattern2 = ".csv")
 
 From time to time, it's helpful to detect if a string contains more than one pattern, typically for filtering purposes.
 
-```{r example6}
+```{r example7}
 #str_detect_multiple with the "and" method ensures that all patterns must be found to return TRUE:
 file_path <- "‪C:/Users/pingu/Downloads/a-very-poorly-named-file_08_09_2020.csv"
 str_detect_multiple(string = file_path, patterns = c("pingu", "2020"), method = 'and')
@@ -84,7 +88,7 @@ str_detect_multiple_and(string = file_path, patterns = c("Downloads", "csv"))
 
 Likewise, sometimes it's helpful to detect if a string contains **any** patterns from a list of patterns. 
 
-```{r example7}
+```{r example8}
 #str_detect_multiple with the "or" method ensures at least one of patterns must be found to return TRUE:
 file_path <- "‪C:/Users/pingu/Downloads/a-very-poorly-named-file_08_09_2020.csv"
 str_detect_multiple(string = file_path, patterns = c("very", "purple"), method = 'or')
@@ -99,7 +103,7 @@ a maximum number of characters before and after the given pattern.
 `str_extract_context()` will return the first match of the pattern, extended by the `window_size`.
 
 
-```{r example8}
+```{r example9}
 sentence <- "I have spread my dreams under your feet; Tread softly because you tread on my dreams."
 str_extract_context(string = sentence, pattern = "my", window_size = 15)
 
@@ -108,7 +112,7 @@ str_extract_context(string = sentence, pattern = "my", window_size = 15)
 `str_extract_context_all()` will return all matches of the pattern, extended by the `window_size`.
 
 
-```{r example9}
+```{r example10}
 
 str_extract_context_all(string = sentence, pattern = "my", window_size = 15)
 
